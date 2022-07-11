@@ -1,0 +1,40 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@page import="dto.Product"%>
+<jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session" />
+<html>
+<head>
+<link rel = "stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<title>상품 목록</title>
+</head>
+<body>
+	<jsp:include page="menu.jsp" />
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-3">상품 정보</h1>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row" align="center">
+			<%
+				Product product = productDAO.getProductById(request.getParameter("id"));
+			%>
+			<div class="col-md-4">
+				<h3><%=product.getPname()%></h3>
+				<p><%=product.getDescription()%></p>
+				<p>상품 코드 : <%=product.getProductId()%>
+				<p>제조사 : <%=product.getManufacturer()%>
+				<p>분류 : <%=product.getCategory()%>
+				<p>재고 수 : <%=product.getUnitsInStock()%>
+				<p><%=product.getUnitPrice()%>원
+				<div>
+					<p class="btn btn-secondary" role="button"> 상품 주문 &raquo;>
+					<p class="btn btn-secondary" role="button"> 상품 목록 &raquo;>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<jsp:include page="footer.jsp" />
+	</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<html>
+<head>
+<title>Implicit Objects</title>
+</head>
+<body>
+	<%
+		request.setCharacterEncoding("utf-8");
+		boolean isLogin = ((request.getParameter("id") == "나성민") 
+							&& (request.getParameter("passwd") == "nugul"));
+		if(isLogin) response.sendRedirect("response01_success.jsp");
+		else response.sendRedirect("response01_failed.jsp");
+	%>
+</body>
+</html>
